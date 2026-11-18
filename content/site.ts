@@ -57,5 +57,5 @@ export const SITE = {
 
   // Drop a real capture at public/images/hero-bg.jpg and set
   // heroImage: "/images/hero-bg.jpg". null = placeholder art.
-  heroImage: null as string | null,
+  heroImage: "images/house-background.png",
 };

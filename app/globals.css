@@ -96,3 +96,60 @@
   .scroll-cue-line::after, .ticker-track, .reveal-in { animation: none !important; }
   .reveal { opacity: 1; }
 }
+
+
+/* =========================================
+   CINEMATIC HERO BACKGROUND
+========================================= */
+
+/* Slow cinematic zoom */
+@keyframes cinematic-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.10);
+  }
+}
+
+.hero-background {
+  animation: cinematic-zoom 30s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Animated film grain */
+@keyframes film-grain {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-2%, 1%);
+  }
+  40% {
+    transform: translate(1%, -2%);
+  }
+  60% {
+    transform: translate(2%, 1%);
+  }
+  80% {
+    transform: translate(-1%, 2%);
+  }
+}
+
+.hero-film-grain {
+  position: absolute;
+  inset: -50%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.10;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+  animation: film-grain 0.25s steps(3) infinite;
+}
+
+/* Respect reduced-motion accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+  .hero-background,
+  .hero-film-grain {
+    animation: none !important;
+  }
+}
