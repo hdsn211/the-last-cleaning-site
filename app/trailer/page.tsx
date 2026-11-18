@@ -1,12 +1,13 @@
 
 import type { Metadata } from "next";
+import { Play } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { CornerBrackets } from "@/components/shared/ScreenshotFrame";
-import { SITE } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Trailer",
+  description: "Watch the official trailer for THE LAST CLEANING.",
 };
 
 export default function TrailerPage() {
@@ -14,64 +15,82 @@ export default function TrailerPage() {
     <>
       <section className="pt-32">
         <div className="wrap">
-          <SectionHeading
-            label="Official Trailer"
-            title="First look."
-            sub="Experience the nightmare. Watch the official trailer of The Last Cleaning."
-          />
 
+          {/* Page heading */}
           <Reveal>
-            <div className="relative mx-auto max-w-5xl border border-line-2">
+            <SectionHeading
+              label="Trailer"
+              title="First look."
+              sub="Step inside. Complete the job. Make it out alive."
+            />
+          </Reveal>
+
+          {/* Cinematic video player */}
+          <Reveal>
+            <div className="relative mx-auto mt-12 max-w-5xl border border-line-2 bg-black shadow-2xl">
+
+              {/* Top information bar */}
+              <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3 font-mono text-[10px] tracking-[0.2em] text-white/50">
+                <span>THE LAST CLEANING</span>
+                <span className="text-red-500">● NOW PLAYING</span>
+              </div>
+
+              {/* Video */}
               <div className="relative aspect-video bg-black">
                 <video
+                  className="h-full w-full object-contain"
                   controls
                   playsInline
                   preload="metadata"
-                  className="absolute inset-0 h-full w-full object-contain"
-                  aria-label={`${SITE.title} official game trailer`}
                 >
                   <source
                     src="/videos/trailer.mp4"
                     type="video/mp4"
                   />
-
-                  Your browser does not support HTML5 video.
+                  Your browser does not support video playback.
                 </video>
-
-                <CornerBrackets />
               </div>
 
-              <span className="absolute left-3 top-3 border border-blood/40 bg-void/75 px-2 py-1 text-[9.5px] tracking-[0.2em] text-bone-dim pointer-events-none">
-                OFFICIAL TRAILER
-              </span>
-            </div>
+              {/* Bottom information bar */}
+              <div className="flex flex-col justify-between gap-2 border-t border-white/10 bg-white/[0.03] px-4 py-4 font-mono text-[10px] tracking-widest text-white/40 sm:flex-row">
+                <span>OFFICIAL GAME TRAILER</span>
+                <span>UNITY 6 / SURVIVAL HORROR</span>
+              </div>
 
-            <div className="mt-4 flex items-center justify-between text-[10px] tracking-[0.18em] text-bone-faint">
-              <span>// THE LAST CLEANING</span>
-              <span className="text-blood-2">● REC</span>
+              <CornerBrackets />
             </div>
           </Reveal>
-        </div>
-      </section>
 
-      <section className="mt-20 border-t border-line bg-coal py-16">
-        <div className="wrap">
+          {/* Trailer information */}
           <Reveal>
-            <p className="mb-6 text-[11px] tracking-[0.26em] text-bone-faint">
-              // ABOUT THE GAME
-            </p>
+            <div className="mt-12 grid gap-8 border-t border-line pt-8 md:grid-cols-2">
 
-            <h2 className="font-osd text-2xl tracking-[0.12em] text-bone">
-              ONE LAST JOB. ONE LONG NIGHT.
-            </h2>
+              <div>
+                <p className="font-mono text-xs tracking-[0.25em] text-blood-2">
+                  ABOUT THE GAME
+                </p>
 
-            <p className="mt-5 max-w-2xl text-[12.5px] leading-relaxed text-bone-dim">
-              The Last Cleaning is a first-person survival horror game
-              currently in development using Unity 6. Clean the house,
-              keep the lights on, and discover what happens when the
-              darkness starts changing.
-            </p>
+                <h2 className="mt-3 text-2xl font-bold uppercase tracking-tight text-bone">
+                  One last cleaning job.
+                </h2>
+              </div>
+
+              <p className="max-w-xl text-sm leading-7 text-bone-dim">
+                Enter a dark and isolated environment where a simple
+                cleaning job turns into a nightmare. Explore the
+                surroundings, uncover what happened, and survive
+                whatever is waiting in the darkness.
+              </p>
+
+            </div>
           </Reveal>
+
+          {/* End transmission */}
+          <div className="mt-16 flex items-center gap-3 border-t border-line pt-6 font-mono text-[10px] tracking-widest text-bone-faint">
+            <Play size={12} className="text-blood-2" />
+            <span>END OF TRANSMISSION</span>
+          </div>
+
         </div>
       </section>
     </>
