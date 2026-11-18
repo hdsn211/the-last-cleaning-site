@@ -4,7 +4,6 @@
 // ============================================================
 
 import Hero from "@/components/home/Hero";
-import StatusTicker from "@/components/home/StatusTicker";
 import AboutPreview from "@/components/home/AboutPreview";
 import FeaturesPreview from "@/components/home/FeaturesPreview";
 import GalleryPreview from "@/components/home/GalleryPreview";
@@ -15,7 +14,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <StatusTicker />
       <AboutPreview />
       <FeaturesPreview />
       <GalleryPreview />
