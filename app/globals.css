@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   THE LAST CLEANING — design system
+   Every color & font on the site is a token defined here.
+   Change a value once, the whole site updates.
+   ============================================================ */
+@theme {
+  /* palette — charcoal / bone / distressed red */
+  --color-void: #070708;        /* near-black background      */
+  --color-coal: #0b0a0c;        /* page background            */
+  --color-ash: #101014;         /* raised panels              */
+  --color-smoke: #15141a;       /* hover panels               */
+  --color-line: #1e1b22;        /* hairline borders           */
+  --color-line-2: #2a2530;      /* stronger borders           */
+  --color-blood: #a03c34;       /* distressed heading red     */
+  --color-blood-2: #b4493d;     /* brighter accent red        */
+  --color-blood-dim: #5e2320;   /* dim red borders            */
+  --color-blood-deep: #571b1b;  /* button fill                */
+  --color-bone: #d3cbbf;        /* main text                  */
+  --color-bone-dim: #958d81;    /* secondary text             */
+  --color-bone-faint: #6a645b;  /* decorative meta only       */
+
+  /* fonts — variables are injected by layout.tsx (next/font) */
+  --font-head: var(--font-special-elite), "Courier New", monospace;
+  --font-mono: var(--font-plex-mono), ui-monospace, "Courier New", monospace;
+  --font-osd: var(--font-vt323), "IBM Plex Mono", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-void font-mono text-bone antialiased;
+    overflow-x: hidden;
   }
+  ::selection { background: #5e1919; color: #f0e6da; }
+  :focus-visible { outline: 2px solid #a8453c; outline-offset: 3px; }
+  ::-webkit-scrollbar { width: 11px; }
+  ::-webkit-scrollbar-track { background: #0a090c; }
+  ::-webkit-scrollbar-thumb { background: #262028; border: 2px solid #0a090c; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-6xl px-6; }
+  .skip-link {
+    @apply absolute top-3 z-[100] bg-blood-deep px-4 py-2.5 text-xs tracking-[0.15em] text-[#f0e6da];
+    left: -999px;
+  }
+  .skip-link:focus { left: 12px; }
+}
+
+/* ---------- VHS atmosphere (fixed overlays, never clickable) ---------- */
+.vhs-grain {
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 700ms steps(4) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); } 25% { transform: translate(-42px, 28px); }
+  50% { transform: translate(30px, -44px); } 75% { transform: translate(-24px, -18px); }
+  100% { transform: translate(0, 0); }
+}
+.vhs-scanlines { opacity: 0.4; background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,0.22) 2px 3px); }
+.vhs-rollbar {
+  top: -25%;
+  background: linear-gradient(to bottom, transparent, rgba(208,214,228,0.03) 45%, rgba(208,214,228,0.055) 50%, rgba(208,214,228,0.03) 55%, transparent);
+  animation: roll 9s linear infinite;
+}
+@keyframes roll { from { top: -25%; } to { top: 125%; } }
+.vhs-vignette { background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,0.5) 100%); }
+
+/* ---------- horror micro-animations ---------- */
+.rec-dot, .cursor-blink { animation: blink 1.15s steps(1) infinite; }
+@keyframes blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
+.title-flicker { animation: flick 9s linear infinite; }
+@keyframes flick { 0%, 86%, 90.5%, 94%, 100% { opacity: 1; } 87.5% { opacity: 0.72; } 92.5% { opacity: 0.85; } 97% { opacity: 0.6; } }
+.title-glow { text-shadow: 1px 0 0 rgba(150,40,35,0.28), -1px 0 0 rgba(70,90,100,0.18), 0 0 26px rgba(120,25,25,0.25); }
+.scroll-cue-line::after {
+  content: ""; position: absolute; left: 0; top: -50%;
+  width: 1px; height: 50%; background: var(--color-blood-2);
+  animation: cue 2.2s ease-in-out infinite;
+}
+@keyframes cue { to { top: 110%; } }
+.ticker-track { animation: ticker 30s linear infinite; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+.reveal { opacity: 0; }
+.reveal-in { animation: fade-rise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+@keyframes fade-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.trailer-slot { background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,0.25) 2px 3px), #050507; }
+
+/* ---------- accessibility: strip all motion if the user asked for it ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .vhs-grain, .vhs-rollbar, .title-flicker, .rec-dot, .cursor-blink,
+  .scroll-cue-line::after, .ticker-track, .reveal-in { animation: none !important; }
+  .reveal { opacity: 1; }
 }

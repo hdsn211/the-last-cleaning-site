@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  # Pin the Node version Netlify builds with (Next.js 16 needs 20+).
+  NODE_VERSION = "22"
