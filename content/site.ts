@@ -26,7 +26,7 @@ export const SITE = {
   // display a fake download or a fake trailer, because there is
   // no URL to point at.
   release: {
-    trailerUrl: null as string | null,
+    trailerUrl: "/videos/trailer.mp4",
     webglBuildUrl: null as string | null,
     windowsDownloadUrl: null as string | null,
     windowsVersion: null as string | null,
