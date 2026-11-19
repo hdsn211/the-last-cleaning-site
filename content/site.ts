@@ -24,7 +24,7 @@ export const SITE = {
   // Release assets
   release: {
     trailerUrl: "/videos/trailer.mp4",
-    webglBuildUrl: null as string | null,
+    webglBuildUrl: "/game/index.html",
     windowsDownloadUrl: null as string | null,
     windowsVersion: null as string | null,
     windowsSize: null as string | null,
