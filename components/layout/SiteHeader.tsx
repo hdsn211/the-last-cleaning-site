@@ -1,11 +1,5 @@
-"use client";
 
-// ============================================================
-// SITE HEADER — fixed navigation bar.
-// First CLIENT component: it holds state and listens to
-// browser events, so it must run in the visitor's browser.
-// "use client" must be the very first line of the file.
-// ============================================================
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -24,33 +18,35 @@ const NAV = [
 ];
 
 export default function SiteHeader() {
-  const pathname = usePathname();                    // current URL — updates on navigation
-  const [open, setOpen] = useState(false);           // mobile menu open?
-  const [scrolled, setScrolled] = useState(false);   // scrolled past 40px?
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Switch to a solid background once the page is scrolled.
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll); // cleanup
+
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Auto-close the mobile menu whenever the page changes.
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  // "/about/" → "/about" — used to highlight the active link.
   const current = pathname.replace(/\/$/, "") || "/";
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled ? "border-line bg-void/95" : "border-transparent bg-void/40 backdrop-blur-sm"
+        scrolled
+          ? "border-line bg-void/95"
+          : "border-transparent bg-void/40 backdrop-blur-sm"
       }`}
     >
       <div className="wrap flex h-16 items-center justify-between gap-4">
+
         {/* Brand */}
         <Link
           href="/"
@@ -61,15 +57,22 @@ export default function SiteHeader() {
           {SITE.title}
         </Link>
 
-        {/* Desktop nav — hidden below 1024px */}
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
+        {/* Desktop navigation */}
+        <nav
+          className="hidden items-center gap-6 lg:flex"
+          aria-label="Primary"
+        >
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              aria-current={current === item.href ? "page" : undefined}
+              aria-current={
+                current === item.href ? "page" : undefined
+              }
               className={`text-[11.5px] tracking-[0.2em] transition-colors ${
-                current === item.href ? "text-bone" : "text-bone-dim hover:text-bone"
+                current === item.href
+                  ? "text-bone"
+                  : "text-bone-dim hover:text-bone"
               }`}
             >
               {item.label}
@@ -77,37 +80,45 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <span className="hidden border border-blood/50 px-2 py-1 text-[9.5px] tracking-[0.24em] text-blood-2 md:block">
-            {SITE.status}
-          </span>
-          {/* Hamburger — visible below 1024px */}
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-            className="flex h-9 w-11 items-center justify-center border border-line-2 text-bone lg:hidden"
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
-        </div>
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={
+            open ? "Close navigation menu" : "Open navigation menu"
+          }
+          className="flex h-9 w-11 items-center justify-center border border-line-2 text-bone lg:hidden"
+        >
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
       </div>
 
-      {/* Mobile nav panel — slides open/closed */}
+      {/* Mobile navigation */}
       <div
         id="mobile-nav"
         className={`overflow-hidden bg-void/95 transition-[max-height,opacity] duration-300 lg:hidden ${
-          open ? "max-h-96 border-b border-line opacity-100" : "max-h-0 opacity-0"
+          open
+            ? "max-h-96 border-b border-line opacity-100"
+            : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="wrap flex flex-col py-3" aria-label="Primary, mobile">
+        <nav
+          className="wrap flex flex-col py-3"
+          aria-label="Primary, mobile"
+        >
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
+              aria-current={
+                current === item.href ? "page" : undefined
+              }
               className={`py-3 text-[13px] tracking-[0.2em] ${
-                current === item.href ? "text-bone" : "text-bone-dim"
+                current === item.href
+                  ? "text-bone"
+                  : "text-bone-dim"
               }`}
             >
               {item.label}
@@ -129,11 +140,17 @@ function LogoMark() {
       stroke="currentColor"
       strokeWidth="1.6"
       className="text-blood-2"
-      aria-hidden
+      aria-hidden="true"
     >
       <path d="M6 21V4l10-2v19" />
       <path d="M6 21h12" />
-      <circle cx="13.4" cy="11.5" r="0.9" fill="currentColor" stroke="none" />
+      <circle
+        cx="13.4"
+        cy="11.5"
+        r="0.9"
+        fill="currentColor"
+        stroke="none"
+      />
     </svg>
   );
 }

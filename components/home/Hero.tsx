@@ -66,8 +66,8 @@ export default function Hero() {
       <div className="wrap relative z-10 pb-24 pt-32">
 
         <p className="mb-6 text-[11px] tracking-[0.24em] text-bone-faint">
-          <span className="text-blood-2">//</span> SURVIVAL HORROR · SINGLE-PLAYER ·{" "}
-          <span className="text-blood-2">{SITE.status}</span>
+          <span className="text-blood-2">//</span>{" "}
+          SURVIVAL HORROR · SINGLE-PLAYER · PSX INSPIRED
         </p>
 
         <h1 className="title-flicker title-glow font-head leading-[0.95] text-blood">
@@ -81,13 +81,14 @@ export default function Hero() {
         </h1>
 
         <p className="mt-6 text-sm tracking-[0.12em] text-bone">
-          <span className="text-blood-dim">—</span> {SITE.tagline}
+          <span className="text-blood-dim">—</span>{" "}
+          {SITE.tagline}
         </p>
 
         <p className="mt-3 max-w-xl text-[13px] leading-relaxed text-bone-dim">
-          A first-person survival horror game in development, built in Unity 6
-          with a PSX-inspired look. Clean the house. Keep the lights on.
-          Notice what changes when they don&apos;t.
+          A first-person survival horror experience built in Unity 6
+          with a PSX-inspired atmosphere. Clean the house. Keep the
+          lights on. Notice what changes when they don&apos;t.
         </p>
 
         {/* Action buttons */}
@@ -103,7 +104,6 @@ export default function Hero() {
             href="/play"
             variant="ghost"
             icon={<Gamepad2 size={13} />}
-            badge="SOON"
           >
             Play game
           </Button>
@@ -117,9 +117,6 @@ export default function Hero() {
           </Button>
         </div>
 
-        <p className="mt-7 text-[10.5px] tracking-[0.08em] text-bone-faint">
-          * In development — no playable build yet. Environment captured in Unity 6.
-        </p>
       </div>
 
       {/* Scroll cue */}
@@ -164,6 +161,7 @@ function HeroScene() {
       </g>
 
       <rect x="248" y="140" width="304" height="170" fill="#100e13" />
+
       <rect
         x="366"
         y="176"
@@ -187,23 +185,9 @@ function HeroScene() {
 
       <circle cx="400" cy="188" r="4" fill="#2b2114" opacity="0.85" />
 
-      <ellipse
-        cx="400"
-        cy="250"
-        rx="110"
-        ry="70"
-        fill="#1d1710"
-        opacity="0.15"
-      />
+      <ellipse cx="400" cy="250" rx="110" ry="70" fill="#1d1710" opacity="0.15" />
 
-      <ellipse
-        cx="400"
-        cy="340"
-        rx="320"
-        ry="70"
-        fill="#15121d"
-        opacity="0.22"
-      />
+      <ellipse cx="400" cy="340" rx="320" ry="70" fill="#15121d" opacity="0.22" />
 
       <path d="M92,450 L112,384 L168,384 L188,450 Z" fill="#050408" />
       <rect x="106" y="377" width="66" height="9" rx="2" fill="#07060a" />

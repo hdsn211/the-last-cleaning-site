@@ -1,8 +1,3 @@
-// ============================================================
-// /about — premise, property, and the work-order prop card.
-// Multi-section page: every <section> reuses the SectionHeading
-// + Reveal rhythm. No new CSS, no new client components.
-// ============================================================
 
 import type { Metadata } from "next";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -10,9 +5,10 @@ import Reveal from "@/components/ui/Reveal";
 import ScreenshotFrame from "@/components/shared/ScreenshotFrame";
 import { SCREENSHOTS } from "@/content/screenshots";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+};
 
-// The honest split: what we can say today vs. what stays secret.
 const RECORD = [
   "First-person survival horror, played solo.",
   "You are a hired cleaner with an ordinary job to finish.",
@@ -31,103 +27,174 @@ const DARK = [
 export default function AboutPage() {
   return (
     <>
-      {/* opening */}
-      <section className="pt-32">
+      {/* OPENING */}
+      <section className="pt-32 pb-20">
         <div className="wrap">
-          <SectionHeading label="About the game" title="The job was simple." />
+          <SectionHeading
+            label="About the game"
+            title="The job was simple."
+            sub="One property. One shift. One night that changes everything."
+          />
+
           <Reveal>
-            <p className="max-w-2xl text-lg leading-relaxed text-bone">
-              You were hired to clean a quiet house before the evening ends. But when the lights
-              go out, the job becomes something far more dangerous.
-            </p>
-            <p className="mt-6 max-w-2xl text-[13.5px] leading-relaxed text-bone-dim">
-              You are the cleaner. The property is a job like any other — a checklist, a bucket,
-              a few rooms that need attention. THE LAST CLEANING follows one shift, from the
-              first mop stroke to whatever is still standing when the power fails.
-            </p>
-            <p className="mt-4 max-w-2xl text-[13.5px] leading-relaxed text-bone-dim">
-              We&apos;re keeping the rest quiet on purpose. What follows is everything we can say
-              today — and the short list of what you&apos;ll have to find out in the house
-              yourself.
-            </p>
+            <div className="max-w-3xl border-l-2 border-blood-dim pl-6 sm:pl-8">
+              <p className="text-lg leading-relaxed text-bone sm:text-xl">
+                You were hired to clean a quiet house before the evening
+                ends. But when the lights go out, the job becomes
+                something far more dangerous.
+              </p>
+
+              <p className="mt-6 text-[13.5px] leading-7 text-bone-dim">
+                You are the cleaner. The property is a job like any
+                other — a checklist, a bucket, a few rooms that need
+                attention. THE LAST CLEANING follows one shift, from
+                the first mop stroke to whatever is still standing
+                when the power fails.
+              </p>
+
+              <p className="mt-4 text-[13.5px] leading-7 text-bone-dim">
+                We are keeping the rest quiet on purpose. What follows
+                is everything we can say today — and what you will
+                have to discover inside the house yourself.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* the shift, so far + work-order prop */}
-      <section className="mt-20 border-t border-line bg-coal py-20">
-        <div className="wrap grid items-start gap-12 lg:grid-cols-[1.2fr_0.9fr] lg:gap-14">
+      {/* THE SHIFT + WORK ORDER */}
+      <section className="border-y border-line bg-coal py-20 md:py-28">
+        <div className="wrap grid items-center gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
+
           <Reveal>
-            <p className="text-[11px] tracking-[0.26em] text-blood-2">// THE SHIFT, SO FAR</p>
-            <p className="mt-5 text-[14px] leading-relaxed text-bone">
-              It starts as routine: clean the rooms, finish before sunset, get paid. Then the
-              fuse box gives out, the lights die, and the house stops feeling empty.
+            <p className="text-[11px] tracking-[0.3em] text-blood-2">
+              // THE SHIFT, SO FAR
             </p>
-            <p className="mt-4 text-[14px] leading-relaxed text-bone-dim">
-              Survival becomes the real objective — a weak flashlight, places to hide, and exits
-              that no longer behave the way exits should.
+
+            <h2 className="mt-5 font-head text-3xl leading-tight text-bone sm:text-4xl">
+              An ordinary job.
+              <span className="block text-blood">
+                An unfamiliar house.
+              </span>
+            </h2>
+
+            <p className="mt-7 text-[14px] leading-7 text-bone">
+              It starts as routine: clean the rooms, finish before
+              sunset, get paid. Then the fuse box gives out, the
+              lights die, and the house stops feeling empty.
             </p>
-            <p className="mt-8 text-[11px] leading-relaxed text-bone-faint">
-              // FURTHER DETAILS CLASSIFIED UNTIL THE FIRST PLAYABLE BUILD
+
+            <p className="mt-5 text-[14px] leading-7 text-bone-dim">
+              Survival becomes the real objective — a weak
+              flashlight, places to hide, and exits that no longer
+              behave the way exits should.
             </p>
+
+            <div className="mt-10 border-t border-line pt-5">
+              <p className="text-[10px] tracking-[0.2em] text-bone-faint">
+                CURRENT OBJECTIVE
+              </p>
+              <p className="mt-2 text-sm tracking-wider text-blood-2">
+                FINISH THE JOB. GET OUT.
+              </p>
+            </div>
           </Reveal>
+
           <Reveal>
             <WorkOrder />
           </Reveal>
+
         </div>
       </section>
 
-      {/* atmosphere placeholders */}
-      <section className="border-t border-line py-20">
+      {/* ATMOSPHERE */}
+      <section className="border-b border-line py-20 md:py-28">
         <div className="wrap">
+
           <SectionHeading
             label="Atmosphere"
             title="Inside the property."
-            sub="Placeholder frames until real captures are pulled from Unity."
+            sub="A closer look at the environment of THE LAST CLEANING."
           />
+
           <div className="grid gap-5 sm:grid-cols-2">
-            {SCREENSHOTS.slice(0, 2).map((shot) => (
+            {SCREENSHOTS.slice(0, 2).map((shot, i) => (
               <Reveal key={shot.id}>
-                <ScreenshotFrame shot={shot} />
+                <ScreenshotFrame
+                  shot={shot}
+                  priority={i === 0}
+                />
               </Reveal>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* on the record / in the dark */}
-      <section className="border-t border-line bg-coal py-20">
-        <div className="wrap grid gap-12 md:grid-cols-2">
-          <Reveal>
-            <p className="text-[11px] tracking-[0.26em] text-blood-2">// ON THE RECORD</p>
-            <ul className="mt-5 space-y-3">
-              {RECORD.map((item) => (
-                <li key={item} className="flex gap-3 text-[13.5px] leading-relaxed text-bone">
-                  <span className="text-blood-2">◆</span> {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal>
-            <p className="text-[11px] tracking-[0.26em] text-bone-faint">// STAYS IN THE DARK</p>
-            <ul className="mt-5 space-y-3">
-              {DARK.map((item) => (
-                <li key={item} className="flex gap-3 text-[13.5px] leading-relaxed text-bone-dim">
-                  <span className="text-bone-faint">◆</span> {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 text-[11px] tracking-[0.16em] text-bone-faint">
-              // ANSWERS SHIP WITH THE GAME, NOT THE WEBSITE
-            </p>
-          </Reveal>
+      {/* ON THE RECORD / STAYS IN THE DARK */}
+      <section className="bg-coal py-20 md:py-28">
+        <div className="wrap">
+
+          <SectionHeading
+            label="What we know"
+            title="Some things stay hidden."
+            sub="The facts are on the record. Everything else stays inside the house."
+          />
+
+          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+
+            <Reveal>
+              <div className="border-t border-blood-dim pt-5">
+                <p className="text-[11px] tracking-[0.28em] text-blood-2">
+                  // ON THE RECORD
+                </p>
+
+                <ul className="mt-7 space-y-5">
+                  {RECORD.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-3 text-[13.5px] leading-relaxed text-bone"
+                    >
+                      <span className="text-blood-2">◆</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="border-t border-line-2 pt-5">
+                <p className="text-[11px] tracking-[0.28em] text-bone-faint">
+                  // STAYS IN THE DARK
+                </p>
+
+                <ul className="mt-7 space-y-5">
+                  {DARK.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-3 text-[13.5px] leading-relaxed text-bone-dim"
+                    >
+                      <span className="text-bone-faint">◆</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-10 border-t border-line pt-5 text-[10px] tracking-[0.2em] text-bone-faint">
+                  // ANSWERS SHIP WITH THE GAME, NOT THE WEBSITE
+                </p>
+              </div>
+            </Reveal>
+
+          </div>
         </div>
       </section>
     </>
   );
 }
 
-/** In-fiction prop: a work order recovered from the site office. Decorative. */
+/* IN-FICTION WORK ORDER */
 function WorkOrder() {
   const ROWS = [
     { term: "CLIENT", value: "[REDACTED]" },
@@ -140,30 +207,49 @@ function WorkOrder() {
 
   return (
     <aside
-      aria-label="In-fiction work order prop (decorative)"
-      className="relative border border-line-2 bg-ash p-7"
+      aria-label="In-fiction work order prop"
+      className="relative border border-line-2 bg-ash p-6 shadow-2xl sm:p-8"
     >
+      {/* Document header */}
+      <div className="mb-7 flex items-center justify-between border-b border-dashed border-line-2 pb-5 pr-20">
+        <div>
+          <p className="text-[9px] tracking-[0.3em] text-bone-faint">
+            PROPERTY MANAGEMENT
+          </p>
+          <p className="mt-2 text-sm font-semibold tracking-[0.2em] text-bone">
+            WORK ORDER
+          </p>
+        </div>
+
+        <span className="text-xs tracking-widest text-bone-faint">
+          Nº 0017
+        </span>
+      </div>
+
+      {/* Overdue stamp */}
       <span
-        aria-hidden
-        className="absolute right-4 top-4 rotate-[8deg] border-2 border-blood/60 bg-void/80 px-2.5 py-1.5 text-[11px] font-semibold tracking-[0.3em] text-[#c14b3f]"
+        aria-hidden="true"
+        className="absolute right-4 top-7 rotate-[8deg] border-2 border-blood/60 bg-void/80 px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.3em] text-[#c14b3f] sm:right-6"
       >
         OVERDUE
       </span>
-      <header className="flex items-center justify-between border-b border-dashed border-line-2 pb-4 pr-24">
-        <span className="text-xs font-semibold tracking-[0.22em] text-bone">WORK ORDER</span>
-        <span className="text-xs font-semibold tracking-[0.22em] text-bone">Nº 0017</span>
-      </header>
-      {/* <dl> = description list: the semantic HTML for term → value pairs */}
-      <dl className="mt-2">
+
+      {/* Document details */}
+      <dl>
         {ROWS.map((row) => (
           <div
             key={row.term}
-            className="flex justify-between gap-4 border-b border-dashed border-line py-3 text-xs"
+            className="flex flex-wrap justify-between gap-3 border-b border-dashed border-line py-4 text-[11px]"
           >
-            <dt className="tracking-[0.16em] text-bone-faint">{row.term}</dt>
+            <dt className="tracking-[0.16em] text-bone-faint">
+              {row.term}
+            </dt>
+
             <dd
               className={`text-right ${
-                row.red ? "tracking-[0.18em] text-blood-2" : "tracking-[0.06em] text-bone"
+                row.red
+                  ? "font-semibold tracking-[0.18em] text-blood-2"
+                  : "tracking-[0.06em] text-bone"
               }`}
             >
               {row.value}
@@ -171,9 +257,18 @@ function WorkOrder() {
           </div>
         ))}
       </dl>
-      <p className="mt-4 text-[10.5px] text-bone-faint">
-        // recovered from the site office — remaining pages missing
-      </p>
+
+      <div className="mt-8 flex items-end justify-between">
+        <p className="max-w-[200px] text-[10px] leading-relaxed text-bone-faint">
+          // RECOVERED FROM THE SITE OFFICE
+          <br />
+          REMAINING PAGES MISSING
+        </p>
+
+        <span className="font-head text-2xl text-blood/40">
+          TLC
+        </span>
+      </div>
     </aside>
   );
 }
