@@ -6,6 +6,8 @@ import { SITE } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Play",
+  description:
+    "Play THE LAST CLEANING directly in your browser. Enter the house and survive the night.",
 };
 
 export default function PlayPage() {
@@ -37,11 +39,9 @@ export default function PlayPage() {
                 <p className="font-osd text-4xl tracking-[0.15em] text-blood-2 sm:text-6xl">
                   THE LAST CLEANING
                 </p>
-
                 <p className="text-center text-[11px] tracking-[0.2em] text-bone-dim">
                   BROWSER GAME
                 </p>
-
                 <p className="text-center text-xs text-bone-faint">
                   Game access is currently unavailable.
                 </p>

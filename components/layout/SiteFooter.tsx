@@ -26,7 +26,7 @@ export default function SiteFooter() {
     <footer className="border-t border-line bg-[#060607]">
       <div className="wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
 
-        {/* Brand */}
+        {/* BRAND */}
         <div>
           <p className="title-glow font-head text-lg text-blood">
             {SITE.title}
@@ -41,9 +41,13 @@ export default function SiteFooter() {
             Clean the house. Stay alive. And don't come back
             after dark.
           </p>
+
+          <p className="mt-5 text-[10px] tracking-[0.25em] text-blood-2">
+            DEVELOPED BY 6 STUDIO
+          </p>
         </div>
 
-        {/* Website navigation */}
+        {/* WEBSITE NAVIGATION */}
         <FooterCol title="SITE">
           <FLink href="/">Home</FLink>
           <FLink href="/about">About</FLink>
@@ -52,14 +56,14 @@ export default function SiteFooter() {
           <FLink href="/trailer">Trailer</FLink>
         </FooterCol>
 
-        {/* Game navigation */}
+        {/* GAME NAVIGATION */}
         <FooterCol title="GAME">
           <FLink href="/play">Play in browser</FLink>
           <FLink href="/docs">Documentation</FLink>
           <FLink href="/credits">Credits</FLink>
         </FooterCol>
 
-        {/* Social links */}
+        {/* SOCIAL LINKS */}
         <FooterCol title="SOCIAL">
           {SOCIALS.map((s) => (
             <li key={s.label}>
@@ -85,7 +89,7 @@ export default function SiteFooter() {
         </FooterCol>
       </div>
 
-      {/* Team credits */}
+      {/* TEAM CREDITS */}
       <div className="wrap border-t border-line py-8">
         <p className="mb-5 text-center text-[10px] font-semibold tracking-[0.3em] text-blood-2">
           // THE TEAM BEHIND THE NIGHT
@@ -101,26 +105,33 @@ export default function SiteFooter() {
             </span>
           ))}
         </div>
+
+        <p className="mt-5 text-center text-[10px] tracking-[0.2em] text-bone-faint">
+          6 STUDIO · INDEPENDENT GAME DEVELOPMENT
+        </p>
       </div>
 
-      {/* Closing message */}
+      {/* CLOSING MESSAGE */}
       <div className="wrap border-t border-line py-6 text-center">
         <p className="text-[13px] text-bone">
           Thank you for visiting.{" "}
           <span className="text-bone-dim">
             Please don't come back after dark.
           </span>
-          <span className="cursor-blink text-blood-2" aria-hidden="true">
+          <span
+            className="cursor-blink text-blood-2"
+            aria-hidden="true"
+          >
             ▌
           </span>
         </p>
       </div>
 
-      {/* Copyright */}
+      {/* COPYRIGHT */}
       <div className="wrap flex flex-wrap justify-between gap-3 border-t border-line py-5 text-[10.5px] tracking-wide text-bone-faint">
         <p>
-          © {year} 6 Studio — developed by the team behind THE LAST CLEANING.
-          All rights reserved.
+          © {year} 6 Studio — developed by the team behind
+          THE LAST CLEANING. All rights reserved.
         </p>
 
         <p>THE LAST CLEANING — Official Website</p>
